@@ -14,10 +14,12 @@ struct Node {
 };
 
 void print(struct Node* head);
+void recursivePrint(struct Node* head);
 void insertAtbeg(struct Node** head, int value);
 void insertAtn(struct Node** head, int value, int position);
 void deletePos(struct Node** head, int position);
 void deleteVal(struct Node** head, int value);
+void reverseNode(struct Node** head);
 
 int main(int argc, char **argv) {
 	struct Node* head = NULL;
@@ -36,6 +38,9 @@ int main(int argc, char **argv) {
 	print(head);
 	deleteVal(&head, 11); //wrong value
 	print(head);
+	reverseNode(&head);
+	print(head);
+	//recursivePrint(head);
 }
 
 void insertAtbeg(struct Node** head, int value) {
@@ -51,6 +56,12 @@ void print(struct Node* head) {
 		printf("%d ", head->data);
 		head = head->link;
 	}
+}
+
+void recursivePrint(struct Node* head) {
+	if(head == NULL) return;
+	printf("%d ", head->data);
+	recursivePrint(head->link);
 }
 
 void insertAtn(struct Node** head, int value, int position) {
@@ -103,4 +114,17 @@ void deleteVal(struct Node** head, int value) {
     }
 	prev->link = temp1->link;
 	free(temp1);
+}
+
+void reverseNode(struct Node** head) {
+	struct Node* current = *head;
+	struct Node* prev = NULL;
+	struct Node* next;
+	while(current != NULL) {
+		next = current->link;
+		current->link = prev;
+		prev = current;
+		current = next;
+	}
+	*head = prev;
 }

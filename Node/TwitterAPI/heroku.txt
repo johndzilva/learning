@@ -1,0 +1,21 @@
+Steps to deploy in heroku
+
+1. mkdir sample
+2. cd sampele
+3. npm init (fill all your information)
+4. Add start script
+    `"start": "node index.js"`
+5. git init
+6. git add . && git commit -m "sample project"
+7. heroku create
+8. git push heroku master
+
+
+or
+
+create app with name in heroku
+
+$ heroku git:remote -a twitterbotdz
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master

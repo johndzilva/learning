@@ -28,14 +28,29 @@ const T = new Twit({
     timeout_ms: 60 * 1000,
 });
 
-// this is to call a function at definite interval
-// var status = schedule.scheduleJob('*/1 * * * *', function(){
+// *    *    *    *    *    *
+// ┬    ┬    ┬    ┬    ┬    ┬
+// │    │    │    │    │    │
+// │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
+// │    │    │    │    └───── month (1 - 12)
+// │    │    │    └────────── day of month (1 - 31)
+// │    │    └─────────────── hour (0 - 23)
+// │    └──────────────────── minute (0 - 59)
+// └───────────────────────── second (0 - 59, OPTIONAL)
+
+var status = schedule.scheduleJob('/30 * * * * *', function(){
+    uploadimage();
+    getquote();
+});
+
+//this is to call a function at definite interval
+// var status = schedule.scheduleJob('* * /6 * * *', function(){
 //     uploadimage();
 //     getquote();
 // });
-//
-uploadimage();
-getquote();
+
+// uploadimage();
+// getquote();
 
 function uploadimage() {
     cloudinary.v2.uploader.upload(

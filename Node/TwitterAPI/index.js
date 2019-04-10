@@ -4,15 +4,39 @@ var wrap = require('word-wrap');
 var random_name = require('node-random-name');
 var schedule = require('node-schedule');
 var request = require('request').defaults({encoding: 'base64'});
+var express = require('express');
 const Twit = require('twit');
 
 var rootCas = require('ssl-root-cas/latest').create();
 
 require('https').globalAgent.options.ca = rootCas;
-
+var app = express();
 var imgapi = 'https://picsum.photos/1920/1280/?random';
 var imgname = random_name({first: true, gender: "female"});
-var status = '#DailyQuote #DailyVibes #MorningVibes #MotivationalQuotes #dontgiveup #quotes';
+var tweetstatus = '#DailyQuote #DailyVibes #MorningVibes #MotivationalQuotes #dontgiveup #quotes';
+
+var runningstatus = 'running';
+
+app.get('/', function (req, res) {
+    res.send(runningstatus);
+});
+
+app.listen(process.env.port, function () {
+    console.log('Example app listening on port 3000!');
+    // *    *    *    *    *    *
+    // ┬    ┬    ┬    ┬    ┬    ┬
+    // │    │    │    │    │    │
+    // │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
+    // │    │    │    │    └───── month (1 - 12)
+    // │    │    │    └────────── day of month (1 - 31)
+    // │    │    └─────────────── hour (0 - 23)
+    // │    └──────────────────── minute (0 - 59)
+    // └───────────────────────── second (0 - 59, OPTIONAL)
+    var runningstatus = schedule.scheduleJob('* * /6 * * *', function(){
+        uploadimage();
+        getquote();
+    });
+});
 
 cloudinary.config({
     cloud_name: 'twitterapi',
@@ -27,30 +51,6 @@ const T = new Twit({
     access_token_secret: '1bvET2bwqnWWdJ0H5zufer7f32yhKc6ys0A6pVdsH8DwN',
     timeout_ms: 60 * 1000,
 });
-
-// *    *    *    *    *    *
-// ┬    ┬    ┬    ┬    ┬    ┬
-// │    │    │    │    │    │
-// │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
-// │    │    │    │    └───── month (1 - 12)
-// │    │    │    └────────── day of month (1 - 31)
-// │    │    └─────────────── hour (0 - 23)
-// │    └──────────────────── minute (0 - 59)
-// └───────────────────────── second (0 - 59, OPTIONAL)
-
-var status = schedule.scheduleJob('/30 * * * * *', function(){
-    uploadimage();
-    getquote();
-});
-
-//this is to call a function at definite interval
-// var status = schedule.scheduleJob('* * /6 * * *', function(){
-//     uploadimage();
-//     getquote();
-// });
-
-// uploadimage();
-// getquote();
 
 function uploadimage() {
     cloudinary.v2.uploader.upload(
@@ -110,7 +110,7 @@ function upload_random_image(image, author) {
         }
         else {
             T.post('statuses/update', {
-                    status: status + ' - ' + author,
+                    status: tweetstatus + ' - ' + author,
                     media_ids: new Array(data.media_id_string)
                 },
                 function (err, data, response) {

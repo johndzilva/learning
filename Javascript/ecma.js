@@ -1,4 +1,19 @@
 //---------------------
+// ECMA Script
+//---------------------
+// ES7 (i) Includes
+// ES7 (ii) Exponential
+// ES8 (i) String padding
+// ES8 (ii) Trailing comma
+// ES8 (iii) Values, entries, keys
+// ES10 (i) Flat
+// ES10 (ii) FlatMap
+// ES10 (iii) trimStart, trimEnd
+// ES10 (iv) fromEntries
+// ES10 (v) try-catch
+
+
+//---------------------
 // ES7
 //---------------------
 

@@ -1,3 +1,10 @@
+//------------------------------------------------
+// Advanced arrays
+//------------------------------------------------
+// (i) Map
+// (ii) Filter
+// (iii) Reduce
+
 const array = [2, 3, 4, 5];
 
 const arr = array.forEach((num) => {

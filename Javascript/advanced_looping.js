@@ -2,6 +2,8 @@
 // Looping
 //----------------------
 // for, while, do, forEach(new in ECMA 5)
+// (i) For of
+// (ii) For in
 
 const basket = ['apples', 'oranges', 'mangoes']
 const detailedBasket = {

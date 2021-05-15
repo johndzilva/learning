@@ -34,7 +34,7 @@ const fun = (a,b,c,d,) => {
 fun(1,2,3,4,);
 //Result: 4 ( no error ) 
 
-//(iii) values, entries, keys
+//(iii) values, entries (turns object to array), keys
 
 let obj = {
   user1: "john",
@@ -79,3 +79,28 @@ arr.flat(); //if no parameter then only one layer
 
 // (ii) flatMap
 // (iii) trimStart, trimEnd
+
+// (iv) fromEntries (turns array to object)
+
+let userProfiles = [['commander', 25], ['superior', 36]]
+const obj = Object.fromEntries(userProfiles);
+
+console.log(obj);
+
+//Result: {
+//          commander: 25,
+//          superior: 36
+//        }
+
+
+// (v) try-catch 
+// ES10 does not require catch (error) parameter
+
+try {
+  true + 'Hi'
+} catch {
+  console.log("type mismatch")
+}
+
+//Result: type mismatch
+

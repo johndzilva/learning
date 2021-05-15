@@ -1,3 +1,10 @@
+//-----------------------
+// Advanced Functions
+//-----------------------
+// (i) Closures
+// (ii) Currying
+// (iii) Compose
+
 //----------
 //Closures
 //----------

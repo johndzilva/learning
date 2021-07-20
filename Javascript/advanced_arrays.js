@@ -4,6 +4,7 @@
 // (i) Map
 // (ii) Filter
 // (iii) Reduce
+// (iv) Find()
 
 const array = [2, 3, 4, 5];
 
@@ -44,3 +45,15 @@ console filterArray = array.filter(num => num > 4);
 const reduceArray = array.reduce((accumulator, num) => {
     return accumulator + num;
 }, 0);
+
+
+//------------------------------------------------
+// Find
+// (only first occurence)
+//------------------------------------------------
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element => element > 10);
+console.log(found);
+
+// expected output: 12

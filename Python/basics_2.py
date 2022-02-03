@@ -1,5 +1,12 @@
 ##---------------------------------------------
 # (i)  Conditional Logic
+# (ii)  Ternary Operator
+# (iii)  For Loop
+# (iv)  Enumerate
+# (v)  While Loop
+# (vi)  Function
+# (vii)  Docstring
+# (viii)  Walrus operator
 ##---------------------------------------------
 
 
@@ -97,7 +104,7 @@ while i < 5:
 
 
 # ---------------------------------------------
-# Fucntion
+# Function
 # ---------------------------------------------
 
 def greetings(name='pikachu', emoji='xD'):
